@@ -1,530 +1,253 @@
 """
 Sample data that mimics real Procore API responses
-Used for demo/testing without API credentials
+~500 data points spanning 2024-2026
 """
 
-SAMPLE_RFIS = [
-    {
-        "id": 1,
-        "number": "001",
-        "subject": "Ceiling height clarification at Level 12",
-        "status": "open",
-        "priority": "High",
-        "cost_impact": "TBD",
-        "schedule_impact": "Yes",
-        "location": "Level 12 - Core",
-        "ball_in_court": {"name": "HKS Architects"},
-        "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2025-01-10T10:00:00Z",
-        "due_date": "2025-01-17",
-        "assignee": {"name": "Mike Chen"}
-    },
-    {
-        "id": 2,
-        "number": "002",
-        "subject": "Door hardware specification for Suite 1420",
-        "status": "open",
-        "priority": "Normal",
-        "cost_impact": "$2,400",
-        "schedule_impact": "No",
-        "location": "Level 14 - Suite 1420",
-        "ball_in_court": {"name": "Owner's Rep"},
-        "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2025-01-08T14:30:00Z",
-        "due_date": "2025-01-15",
-        "assignee": {"name": "Sarah Johnson"}
-    },
-    {
-        "id": 3,
-        "number": "003",
-        "subject": "MEP coordination conflict at elevator lobby",
-        "status": "closed",
-        "priority": "High",
-        "cost_impact": "None",
-        "schedule_impact": "No",
-        "location": "Level 12 - Elevator Lobby",
-        "ball_in_court": {"name": "GC"},
-        "created_by": {"name": "Mike Chen"},
-        "created_at": "2025-01-05T09:00:00Z",
-        "due_date": "2025-01-12",
-        "closed_at": "2025-01-11T16:00:00Z",
-        "assignee": {"name": "Anthony Buonantuono"}
-    },
-    {
-        "id": 4,
-        "number": "004",
-        "subject": "Millwork finish color confirmation",
-        "status": "open",
-        "priority": "Normal",
-        "cost_impact": "None",
-        "schedule_impact": "No",
-        "location": "Level 14 - Reception",
-        "ball_in_court": {"name": "Interior Designer"},
-        "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2025-01-15T11:00:00Z",
-        "due_date": "2025-01-22",
-        "assignee": {"name": "Mike Chen"}
-    },
-    {
-        "id": 5,
-        "number": "005",
-        "subject": "Fire rating for corridor partition",
-        "status": "open",
-        "priority": "High",
-        "cost_impact": "TBD",
-        "schedule_impact": "Yes",
-        "location": "Level 11 - Corridor B",
-        "ball_in_court": {"name": "HKS Architects"},
-        "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2025-01-03T08:00:00Z",
-        "due_date": "2025-01-10",
-        "assignee": {"name": "Sarah Johnson"}
-    },
-    {
-        "id": 6,
-        "number": "006",
-        "subject": "Acoustical ceiling grid layout",
-        "status": "draft",
-        "priority": "Low",
-        "cost_impact": "None",
-        "schedule_impact": "No",
-        "location": "Level 11 - Open Office",
-        "ball_in_court": {"name": "GC"},
-        "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2025-01-20T10:00:00Z",
-        "due_date": "2025-01-27",
-        "assignee": {"name": "Anthony Buonantuono"}
-    },
-    {
-        "id": 7,
-        "number": "007",
-        "subject": "Window sill detail at curtain wall",
-        "status": "closed",
-        "priority": "Normal",
-        "cost_impact": "None",
-        "schedule_impact": "No",
-        "location": "Level 12 - Perimeter",
-        "ball_in_court": {"name": "GC"},
-        "created_by": {"name": "Mike Chen"},
-        "created_at": "2025-01-02T09:00:00Z",
-        "due_date": "2025-01-09",
-        "closed_at": "2025-01-08T14:00:00Z",
-        "assignee": {"name": "Mike Chen"}
-    },
-    {
-        "id": 8,
-        "number": "008",
-        "subject": "Electrical panel relocation request",
-        "status": "open",
-        "priority": "High",
-        "cost_impact": "$8,500",
-        "schedule_impact": "Yes",
-        "location": "Level 14 - Electrical Room",
-        "ball_in_court": {"name": "MEP Engineer"},
-        "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2025-01-18T13:00:00Z",
-        "due_date": "2025-01-25",
-        "assignee": {"name": "Sarah Johnson"}
-    },
-    {
-        "id": 9,
-        "number": "009",
-        "subject": "Sprinkler head placement in conference room",
-        "status": "open",
-        "priority": "Normal",
-        "cost_impact": "None",
-        "schedule_impact": "No",
-        "location": "Level 14 - Conference A",
-        "ball_in_court": {"name": "Fire Protection"},
-        "created_by": {"name": "Mike Chen"},
-        "created_at": "2025-01-19T09:00:00Z",
-        "due_date": "2025-01-26",
-        "assignee": {"name": "Mike Chen"}
-    },
-    {
-        "id": 10,
-        "number": "010",
-        "subject": "ADA clearance at restroom entry",
-        "status": "open",
-        "priority": "High",
-        "cost_impact": "$1,200",
-        "schedule_impact": "No",
-        "location": "Level 12 - Restrooms",
-        "ball_in_court": {"name": "HKS Architects"},
-        "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2025-01-21T11:00:00Z",
-        "due_date": "2025-01-28",
-        "assignee": {"name": "Anthony Buonantuono"}
-    },
-    {
-        "id": 11,
-        "number": "011",
-        "subject": "HVAC diffuser locations per revised plan",
-        "status": "closed",
-        "priority": "Normal",
-        "cost_impact": "None",
-        "schedule_impact": "No",
-        "location": "Level 11 - Open Office",
-        "ball_in_court": {"name": "GC"},
-        "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2024-12-28T14:00:00Z",
-        "due_date": "2025-01-04",
-        "closed_at": "2025-01-03T10:00:00Z",
-        "assignee": {"name": "Sarah Johnson"}
-    },
-    {
-        "id": 12,
-        "number": "012",
-        "subject": "Stair handrail finish confirmation",
-        "status": "closed",
-        "priority": "Low",
-        "cost_impact": "None",
-        "schedule_impact": "No",
-        "location": "Stair A - All Levels",
-        "ball_in_court": {"name": "GC"},
-        "created_by": {"name": "Mike Chen"},
-        "created_at": "2024-12-20T08:00:00Z",
-        "due_date": "2024-12-27",
-        "closed_at": "2024-12-24T16:00:00Z",
-        "assignee": {"name": "Mike Chen"}
-    }
+import random
+from datetime import datetime, timedelta
+
+# Seed for reproducibility
+random.seed(42)
+
+# Helper data
+ARCHITECTS = ["HKS Architects", "Gensler", "SOM", "Perkins&Will"]
+ENGINEERS = ["MEP Engineer", "Structural Engineer", "Fire Protection", "AV Consultant"]
+CONTRACTORS = ["R&J Construction", "Owner's Rep", "GC", "Interior Designer"]
+BALL_IN_COURT = ARCHITECTS + ENGINEERS + CONTRACTORS
+
+TEAM_MEMBERS = [
+    "Anthony Buonantuono", "Mike Chen", "Sarah Johnson", "David Park",
+    "Lisa Martinez", "James Wilson", "Emily Brown", "Robert Taylor",
+    "Jennifer Lee", "Michael Garcia", "Amanda White", "Chris Anderson"
 ]
 
-SAMPLE_SUBMITTALS = [
-    {
-        "id": 1,
-        "number": "01.01",
-        "revision": "0",
-        "title": "Door Hardware - Schlage",
-        "spec_section": "08 71 00",
-        "type": "Product Data",
-        "status": "approved",
-        "submitted_by": {"name": "ABC Hardware Co"},
-        "responsible_contractor": "R&J Construction",
-        "approver": {"name": "HKS Architects"},
-        "due_date": "2025-01-15",
-        "submitted_date": "2025-01-10",
-        "approved_date": "2025-01-14",
-        "lead_time": "4 weeks"
-    },
-    {
-        "id": 2,
-        "number": "01.02",
-        "revision": "0",
-        "title": "Acoustical Ceiling Tiles - Armstrong",
-        "spec_section": "09 51 00",
-        "type": "Product Data",
-        "status": "pending",
-        "submitted_by": {"name": "Ceiling Systems Inc"},
-        "responsible_contractor": "Acoustical Ceilings LLC",
-        "approver": {"name": "HKS Architects"},
-        "due_date": "2025-01-20",
-        "submitted_date": "2025-01-12",
-        "approved_date": "",
-        "lead_time": "3 weeks"
-    },
-    {
-        "id": 3,
-        "number": "01.03",
-        "revision": "1",
-        "title": "Millwork Shop Drawings - Custom Cabinets",
-        "spec_section": "06 41 00",
-        "type": "Shop Drawing",
-        "status": "revise_resubmit",
-        "submitted_by": {"name": "Fine Woodworks LLC"},
-        "responsible_contractor": "Fine Woodworks LLC",
-        "approver": {"name": "Interior Designer"},
-        "due_date": "2025-01-18",
-        "submitted_date": "2025-01-08",
-        "approved_date": "",
-        "lead_time": "6 weeks"
-    },
-    {
-        "id": 4,
-        "number": "02.01",
-        "revision": "0",
-        "title": "Paint Colors - Benjamin Moore",
-        "spec_section": "09 91 00",
-        "type": "Sample",
-        "status": "approved",
-        "submitted_by": {"name": "Pro Painters Inc"},
-        "responsible_contractor": "Pro Painters Inc",
-        "approver": {"name": "Interior Designer"},
-        "due_date": "2025-01-10",
-        "submitted_date": "2025-01-05",
-        "approved_date": "2025-01-09",
-        "lead_time": "1 week"
-    },
-    {
-        "id": 5,
-        "number": "02.02",
-        "revision": "0",
-        "title": "Carpet Tile - Interface",
-        "spec_section": "09 68 00",
-        "type": "Sample",
-        "status": "pending",
-        "submitted_by": {"name": "Flooring Solutions"},
-        "responsible_contractor": "Flooring Solutions",
-        "approver": {"name": "Interior Designer"},
-        "due_date": "2025-01-22",
-        "submitted_date": "2025-01-14",
-        "approved_date": "",
-        "lead_time": "2 weeks"
-    },
-    {
-        "id": 6,
-        "number": "03.01",
-        "revision": "0",
-        "title": "Light Fixtures - Schedule A",
-        "spec_section": "26 51 00",
-        "type": "Product Data",
-        "status": "approved_as_noted",
-        "submitted_by": {"name": "Electric Supply Co"},
-        "responsible_contractor": "Ace Electric",
-        "approver": {"name": "MEP Engineer"},
-        "due_date": "2025-01-12",
-        "submitted_date": "2025-01-06",
-        "approved_date": "2025-01-11",
-        "lead_time": "8 weeks"
-    },
-    {
-        "id": 7,
-        "number": "03.02",
-        "revision": "0",
-        "title": "VAV Boxes - Trane",
-        "spec_section": "23 36 00",
-        "type": "Product Data",
-        "status": "pending",
-        "submitted_by": {"name": "HVAC Distributors"},
-        "responsible_contractor": "Metro HVAC",
-        "approver": {"name": "MEP Engineer"},
-        "due_date": "2025-01-25",
-        "submitted_date": "2025-01-18",
-        "approved_date": "",
-        "lead_time": "10 weeks"
-    },
-    {
-        "id": 8,
-        "number": "04.01",
-        "revision": "0",
-        "title": "Fire Extinguisher Cabinets",
-        "spec_section": "10 44 00",
-        "type": "Product Data",
-        "status": "rejected",
-        "submitted_by": {"name": "Safety Equipment Inc"},
-        "responsible_contractor": "R&J Construction",
-        "approver": {"name": "HKS Architects"},
-        "due_date": "2025-01-08",
-        "submitted_date": "2025-01-03",
-        "approved_date": "",
-        "lead_time": "2 weeks"
-    },
-    {
-        "id": 9,
-        "number": "04.02",
-        "revision": "0",
-        "title": "Exit Signs - LED",
-        "spec_section": "10 14 00",
-        "type": "Product Data",
-        "status": "approved",
-        "submitted_by": {"name": "Electric Supply Co"},
-        "responsible_contractor": "Ace Electric",
-        "approver": {"name": "HKS Architects"},
-        "due_date": "2025-01-08",
-        "submitted_date": "2025-01-02",
-        "approved_date": "2025-01-07",
-        "lead_time": "3 weeks"
-    },
-    {
-        "id": 10,
-        "number": "05.01",
-        "revision": "2",
-        "title": "Drywall Partition Details",
-        "spec_section": "09 21 16",
-        "type": "Shop Drawing",
-        "status": "approved",
-        "submitted_by": {"name": "Drywall Pros"},
-        "responsible_contractor": "Drywall Pros",
-        "approver": {"name": "HKS Architects"},
-        "due_date": "2025-01-05",
-        "submitted_date": "2024-12-28",
-        "approved_date": "2025-01-04",
-        "lead_time": "1 week"
-    },
-    {
-        "id": 11,
-        "number": "05.02",
-        "revision": "0",
-        "title": "Glass Partition System - Modernus",
-        "spec_section": "08 88 00",
-        "type": "Shop Drawing",
-        "status": "pending",
-        "submitted_by": {"name": "Glass Solutions NYC"},
-        "responsible_contractor": "Glass Solutions NYC",
-        "approver": {"name": "HKS Architects"},
-        "due_date": "2025-01-28",
-        "submitted_date": "2025-01-20",
-        "approved_date": "",
-        "lead_time": "12 weeks"
-    },
-    {
-        "id": 12,
-        "number": "06.01",
-        "revision": "0",
-        "title": "Plumbing Fixtures - Kohler",
-        "spec_section": "22 40 00",
-        "type": "Product Data",
-        "status": "approved",
-        "submitted_by": {"name": "Metro Plumbing Supply"},
-        "responsible_contractor": "AAA Plumbing",
-        "approver": {"name": "MEP Engineer"},
-        "due_date": "2025-01-10",
-        "submitted_date": "2025-01-04",
-        "approved_date": "2025-01-09",
-        "lead_time": "6 weeks"
-    }
+LOCATIONS = [
+    "Level 11 - Open Office", "Level 11 - Conference A", "Level 11 - Corridor",
+    "Level 12 - Core", "Level 12 - Elevator Lobby", "Level 12 - Restrooms", "Level 12 - Perimeter",
+    "Level 13 - Executive Suite", "Level 13 - Board Room", "Level 13 - Kitchen",
+    "Level 14 - Suite 1420", "Level 14 - Reception", "Level 14 - Electrical Room",
+    "Level 15 - Penthouse", "Level 15 - Terrace", "Stair A - All Levels", "Stair B - All Levels",
+    "Lobby - Main", "Lobby - Service", "Basement - MEP Room"
 ]
 
-SAMPLE_DAILY_LOGS = [
-    {
-        "id": 1,
-        "log_date": "2025-01-20",
-        "day": "Monday",
-        "weather": "Clear, 35°F",
-        "weather_delay": False,
-        "work_hours": "7:00 AM - 3:30 PM",
-        "manpower": [
-            {"trade": "Carpenters", "headcount": 12, "company": "R&J Construction"},
-            {"trade": "Electricians", "headcount": 8, "company": "Ace Electric"},
-            {"trade": "Plumbers", "headcount": 4, "company": "AAA Plumbing"},
-            {"trade": "HVAC", "headcount": 6, "company": "Metro HVAC"}
-        ],
-        "work_performed": "Framing continues on Level 14 offices. MEP rough-in on Level 12 bathrooms.",
-        "deliveries": ["Drywall (40 sheets)", "Electrical conduit"],
-        "visitors": ["Owner's Rep - site walk"],
-        "safety_incidents": [],
-        "notes": "On schedule. Level 14 framing 80% complete."
-    },
-    {
-        "id": 2,
-        "log_date": "2025-01-21",
-        "day": "Tuesday",
-        "weather": "Snow, 28°F",
-        "weather_delay": True,
-        "work_hours": "7:00 AM - 2:00 PM",
-        "manpower": [
-            {"trade": "Carpenters", "headcount": 8, "company": "R&J Construction"},
-            {"trade": "Electricians", "headcount": 6, "company": "Ace Electric"},
-            {"trade": "Plumbers", "headcount": 2, "company": "AAA Plumbing"},
-            {"trade": "HVAC", "headcount": 4, "company": "Metro HVAC"}
-        ],
-        "work_performed": "Interior work only due to weather. Continued electrical rough-in Level 12.",
-        "deliveries": [],
-        "visitors": [],
-        "safety_incidents": [],
-        "notes": "Reduced crew due to weather. Early release at 2 PM."
-    },
-    {
-        "id": 3,
-        "log_date": "2025-01-22",
-        "day": "Wednesday",
-        "weather": "Cloudy, 32°F",
-        "weather_delay": False,
-        "work_hours": "7:00 AM - 3:30 PM",
-        "manpower": [
-            {"trade": "Carpenters", "headcount": 14, "company": "R&J Construction"},
-            {"trade": "Electricians", "headcount": 10, "company": "Ace Electric"},
-            {"trade": "Plumbers", "headcount": 5, "company": "AAA Plumbing"},
-            {"trade": "HVAC", "headcount": 6, "company": "Metro HVAC"},
-            {"trade": "Drywall", "headcount": 8, "company": "Drywall Pros"}
-        ],
-        "work_performed": "Drywall started on Level 11. Full crew back on site. Completed framing Level 14.",
-        "deliveries": ["Drywall (120 sheets)", "Joint compound", "HVAC diffusers"],
-        "visitors": ["Fire Marshal - inspection prep"],
-        "safety_incidents": [],
-        "notes": "Drywall ahead of schedule. Level 11 boarding 25% complete."
-    },
-    {
-        "id": 4,
-        "log_date": "2025-01-23",
-        "day": "Thursday",
-        "weather": "Clear, 38°F",
-        "weather_delay": False,
-        "work_hours": "7:00 AM - 3:30 PM",
-        "manpower": [
-            {"trade": "Carpenters", "headcount": 14, "company": "R&J Construction"},
-            {"trade": "Electricians", "headcount": 10, "company": "Ace Electric"},
-            {"trade": "Plumbers", "headcount": 5, "company": "AAA Plumbing"},
-            {"trade": "HVAC", "headcount": 6, "company": "Metro HVAC"},
-            {"trade": "Drywall", "headcount": 10, "company": "Drywall Pros"}
-        ],
-        "work_performed": "Good progress all areas. MEP coordination meeting held. Prepared for DOB inspection.",
-        "deliveries": ["Light fixtures (Schedule A)", "Door frames (8)"],
-        "visitors": ["Architect - RFI review", "MEP Engineer - coordination"],
-        "safety_incidents": [],
-        "notes": "DOB inspection scheduled for Friday AM."
-    },
-    {
-        "id": 5,
-        "log_date": "2025-01-24",
-        "day": "Friday",
-        "weather": "Clear, 42°F",
-        "weather_delay": False,
-        "work_hours": "7:00 AM - 3:30 PM",
-        "manpower": [
-            {"trade": "Carpenters", "headcount": 12, "company": "R&J Construction"},
-            {"trade": "Electricians", "headcount": 8, "company": "Ace Electric"},
-            {"trade": "Plumbers", "headcount": 4, "company": "AAA Plumbing"},
-            {"trade": "HVAC", "headcount": 5, "company": "Metro HVAC"},
-            {"trade": "Drywall", "headcount": 10, "company": "Drywall Pros"}
-        ],
-        "work_performed": "DOB inspection passed. Framing complete Level 14. Started door frame installation.",
-        "deliveries": ["Doors (12)", "Hardware sets"],
-        "visitors": ["DOB Inspector - PASSED"],
-        "safety_incidents": [],
-        "notes": "Inspection passed. On track for Monday taping."
-    },
-    {
-        "id": 6,
-        "log_date": "2025-01-27",
-        "day": "Monday",
-        "weather": "Partly Cloudy, 40°F",
-        "weather_delay": False,
-        "work_hours": "7:00 AM - 3:30 PM",
-        "manpower": [
-            {"trade": "Carpenters", "headcount": 10, "company": "R&J Construction"},
-            {"trade": "Electricians", "headcount": 12, "company": "Ace Electric"},
-            {"trade": "Plumbers", "headcount": 6, "company": "AAA Plumbing"},
-            {"trade": "HVAC", "headcount": 8, "company": "Metro HVAC"},
-            {"trade": "Drywall", "headcount": 12, "company": "Drywall Pros"},
-            {"trade": "Tapers", "headcount": 4, "company": "Drywall Pros"}
-        ],
-        "work_performed": "Taping started Level 11. Electrical trim Level 12. Plumbing fixtures Level 12.",
-        "deliveries": ["Ceiling grid (Level 11)", "Plumbing fixtures"],
-        "visitors": [],
-        "safety_incidents": [],
-        "notes": "Added taping crew. Level 11 drywall 90% complete."
-    },
-    {
-        "id": 7,
-        "log_date": "2025-01-28",
-        "day": "Tuesday",
-        "weather": "Rain, 45°F",
-        "weather_delay": False,
-        "work_hours": "7:00 AM - 3:30 PM",
-        "manpower": [
-            {"trade": "Carpenters", "headcount": 10, "company": "R&J Construction"},
-            {"trade": "Electricians", "headcount": 12, "company": "Ace Electric"},
-            {"trade": "Plumbers", "headcount": 6, "company": "AAA Plumbing"},
-            {"trade": "HVAC", "headcount": 8, "company": "Metro HVAC"},
-            {"trade": "Drywall", "headcount": 8, "company": "Drywall Pros"},
-            {"trade": "Tapers", "headcount": 6, "company": "Drywall Pros"},
-            {"trade": "Painters", "headcount": 4, "company": "Pro Painters Inc"}
-        ],
-        "work_performed": "Painting started Level 12. Taping continues Level 11. Ceiling grid layout.",
-        "deliveries": ["Paint (primer + finish)", "Ceiling tiles"],
-        "visitors": ["Interior Designer - color review"],
-        "safety_incidents": [],
-        "notes": "Painters mobilized. Level 12 ready for finishes."
-    }
+RFI_SUBJECTS = [
+    "Ceiling height clarification", "Door hardware specification", "MEP coordination conflict",
+    "Millwork finish confirmation", "Fire rating for partition", "Acoustical ceiling layout",
+    "Window sill detail", "Electrical panel relocation", "Sprinkler head placement",
+    "ADA clearance at entry", "HVAC diffuser locations", "Stair handrail finish",
+    "Glass partition framing", "Light fixture mounting", "Floor transition detail",
+    "Column enclosure dimension", "Duct routing conflict", "Cable tray path",
+    "Smoke detector placement", "Access panel location", "Furniture power location",
+    "Signage mounting height", "Reveal detail at door", "Base detail at glass",
+    "Grille finish selection", "Outlet height confirmation", "Switch plate layout",
+    "Thermostat location", "Fire alarm device placement", "Emergency lighting",
+    "Exit sign location", "Drinking fountain spec", "Toilet partition type",
+    "Mirror mounting detail", "Grab bar locations", "Paper towel dispenser",
+    "Soap dispenser type", "Ceiling access panel", "Diffuser neck size"
 ]
+
+SUBMITTAL_TITLES = [
+    ("Door Hardware", "08 71 00"), ("Acoustical Ceiling Tiles", "09 51 00"),
+    ("Millwork Shop Drawings", "06 41 00"), ("Paint Colors", "09 91 00"),
+    ("Carpet Tile", "09 68 00"), ("Light Fixtures", "26 51 00"),
+    ("VAV Boxes", "23 36 00"), ("Fire Extinguisher Cabinets", "10 44 00"),
+    ("Exit Signs", "10 14 00"), ("Drywall Partition Details", "09 21 16"),
+    ("Glass Partition System", "08 88 00"), ("Plumbing Fixtures", "22 40 00"),
+    ("Diffusers and Grilles", "23 37 00"), ("Electrical Panels", "26 24 00"),
+    ("Fire Alarm Devices", "28 31 00"), ("Security Cameras", "28 23 00"),
+    ("Access Control Hardware", "08 71 13"), ("Elevator Cab Finishes", "14 21 00"),
+    ("Stair Railings", "05 52 00"), ("Window Film", "08 87 00"),
+    ("Ceramic Tile", "09 30 00"), ("Solid Surface Counters", "12 36 00"),
+    ("Wood Flooring", "09 64 00"), ("Rubber Base", "09 65 00"),
+    ("Tackable Wall Panels", "09 84 00"), ("Fabric Wrapped Panels", "09 83 00"),
+    ("Blinds and Shades", "12 24 00"), ("Projection Screens", "11 52 00"),
+    ("Toilet Accessories", "10 28 00"), ("Lockers", "10 51 00"),
+    ("Metal Panels", "07 42 00"), ("Aluminum Framing", "08 44 00")
+]
+
+SUBMITTAL_TYPES = ["Product Data", "Shop Drawing", "Sample", "Test Report", "Warranty"]
+SUBMITTAL_STATUSES = ["approved", "pending", "revise_resubmit", "approved_as_noted", "rejected"]
+
+SUBCONTRACTORS = [
+    ("R&J Construction", "Carpenters"), ("Ace Electric", "Electricians"),
+    ("AAA Plumbing", "Plumbers"), ("Metro HVAC", "HVAC"),
+    ("Drywall Pros", "Drywall"), ("Pro Painters Inc", "Painters"),
+    ("Ceiling Systems Inc", "Ceiling"), ("Flooring Solutions", "Flooring"),
+    ("Glass Solutions NYC", "Glaziers"), ("Fire Protection Co", "Sprinkler Fitters"),
+    ("Steel Works Inc", "Iron Workers"), ("Tile Masters", "Tile Setters")
+]
+
+WORK_ACTIVITIES = [
+    "Framing continues", "MEP rough-in", "Drywall installation", "Taping and finishing",
+    "Painting in progress", "Ceiling grid installation", "Tile installation",
+    "Flooring installation", "Millwork installation", "Door and hardware install",
+    "Light fixture installation", "Device trim-out", "Punch list work",
+    "Final cleaning", "Inspection prep", "Touch-up and repairs"
+]
+
+DELIVERY_ITEMS = [
+    "Drywall (40 sheets)", "Electrical conduit", "Light fixtures", "Door frames",
+    "Doors (12)", "Hardware sets", "Ceiling grid", "Ceiling tiles", "Paint",
+    "Carpet tile", "Ceramic tile", "Plumbing fixtures", "HVAC diffusers",
+    "VAV boxes", "Millwork components", "Glass panels", "Aluminum framing"
+]
+
+VISITOR_TYPES = [
+    "Owner's Rep - site walk", "Architect - RFI review", "MEP Engineer - coordination",
+    "DOB Inspector", "Fire Marshal - inspection", "Interior Designer - review",
+    "Client - progress tour", "Safety consultant", "Commissioning agent"
+]
+
+WEATHER_CONDITIONS = [
+    ("Clear", 30, 85), ("Partly Cloudy", 35, 80), ("Cloudy", 32, 75),
+    ("Rain", 40, 70), ("Snow", 20, 35), ("Overcast", 35, 65)
+]
+
+# Generate RFIs
+def generate_rfis(count=150):
+    rfis = []
+    start_date = datetime(2024, 3, 1)
+
+    for i in range(1, count + 1):
+        created = start_date + timedelta(days=random.randint(0, 700))
+        due = created + timedelta(days=random.randint(5, 14))
+        status = random.choices(["open", "closed", "draft"], weights=[0.35, 0.55, 0.10])[0]
+
+        rfi = {
+            "id": i,
+            "number": f"{i:03d}",
+            "subject": f"{random.choice(RFI_SUBJECTS)} at {random.choice(LOCATIONS).split(' - ')[0]}",
+            "status": status,
+            "priority": random.choice(["High", "Normal", "Low"]),
+            "cost_impact": random.choice(["None", "TBD", f"${random.randint(1,50)*500:,}"]),
+            "schedule_impact": random.choice(["Yes", "No", "No", "No"]),
+            "location": random.choice(LOCATIONS),
+            "ball_in_court": {"name": random.choice(BALL_IN_COURT)},
+            "created_by": {"name": random.choice(TEAM_MEMBERS)},
+            "created_at": created.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "due_date": due.strftime("%Y-%m-%d"),
+            "assignee": {"name": random.choice(TEAM_MEMBERS)}
+        }
+
+        if status == "closed":
+            closed_date = due - timedelta(days=random.randint(0, 3))
+            rfi["closed_at"] = closed_date.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+        rfis.append(rfi)
+
+    return rfis
+
+# Generate Submittals
+def generate_submittals(count=150):
+    submittals = []
+    start_date = datetime(2024, 2, 1)
+
+    for i in range(1, count + 1):
+        title, spec = random.choice(SUBMITTAL_TITLES)
+        submitted = start_date + timedelta(days=random.randint(0, 700))
+        due = submitted + timedelta(days=random.randint(7, 21))
+        status = random.choices(
+            ["approved", "pending", "revise_resubmit", "approved_as_noted", "rejected"],
+            weights=[0.45, 0.25, 0.15, 0.10, 0.05]
+        )[0]
+
+        division = (i // 10) + 1
+        seq = (i % 10) + 1
+
+        sub = {
+            "id": i,
+            "number": f"{division:02d}.{seq:02d}",
+            "revision": str(random.choices([0, 1, 2], weights=[0.7, 0.25, 0.05])[0]),
+            "title": f"{title} - {random.choice(['Type A', 'Type B', 'Schedule 1', 'Schedule 2', 'Option 1'])}",
+            "spec_section": spec,
+            "type": random.choice(SUBMITTAL_TYPES),
+            "status": status,
+            "submitted_by": {"name": random.choice([s[0] for s in SUBCONTRACTORS])},
+            "responsible_contractor": random.choice([s[0] for s in SUBCONTRACTORS]),
+            "approver": {"name": random.choice(ARCHITECTS + ENGINEERS)},
+            "due_date": due.strftime("%Y-%m-%d"),
+            "submitted_date": submitted.strftime("%Y-%m-%d"),
+            "approved_date": (due - timedelta(days=random.randint(1, 5))).strftime("%Y-%m-%d") if status in ["approved", "approved_as_noted"] else "",
+            "lead_time": f"{random.choice([2, 3, 4, 6, 8, 10, 12])} weeks"
+        }
+
+        submittals.append(sub)
+
+    return submittals
+
+# Generate Daily Logs
+def generate_daily_logs(count=200):
+    logs = []
+    start_date = datetime(2024, 3, 4)  # Start on a Monday
+    current_date = start_date
+
+    day_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+
+    log_id = 1
+    while log_id <= count:
+        # Skip weekends
+        if current_date.weekday() < 5:
+            # Determine weather
+            month = current_date.month
+            if month in [12, 1, 2]:
+                weather_type, min_temp, max_temp = random.choice(WEATHER_CONDITIONS[:3] + [WEATHER_CONDITIONS[4]])
+                temp = random.randint(min_temp, min(max_temp, 45))
+            elif month in [6, 7, 8]:
+                weather_type, min_temp, max_temp = random.choice(WEATHER_CONDITIONS[:3])
+                temp = random.randint(max(min_temp, 65), max_temp)
+            else:
+                weather_type, min_temp, max_temp = random.choice(WEATHER_CONDITIONS[:4])
+                temp = random.randint(min_temp, max_temp)
+
+            weather_delay = weather_type in ["Snow", "Rain"] and random.random() < 0.3
+
+            # Generate manpower
+            base_trades = random.sample(SUBCONTRACTORS, random.randint(4, 8))
+            manpower = []
+            for company, trade in base_trades:
+                headcount = random.randint(4, 16)
+                if weather_delay:
+                    headcount = max(2, headcount // 2)
+                manpower.append({
+                    "trade": trade,
+                    "headcount": headcount,
+                    "company": company
+                })
+
+            # Generate deliveries and visitors
+            num_deliveries = random.randint(0, 4)
+            num_visitors = random.randint(0, 2)
+
+            log = {
+                "id": log_id,
+                "log_date": current_date.strftime("%Y-%m-%d"),
+                "day": day_names[current_date.weekday()],
+                "weather": f"{weather_type}, {temp}°F",
+                "weather_delay": weather_delay,
+                "work_hours": "7:00 AM - 3:30 PM" if not weather_delay else "7:00 AM - 2:00 PM",
+                "manpower": manpower,
+                "work_performed": f"{random.choice(WORK_ACTIVITIES)} on {random.choice(LOCATIONS).split(' - ')[0]}. {random.choice(WORK_ACTIVITIES)} on {random.choice(LOCATIONS).split(' - ')[0]}.",
+                "deliveries": random.sample(DELIVERY_ITEMS, num_deliveries) if num_deliveries > 0 else [],
+                "visitors": random.sample(VISITOR_TYPES, num_visitors) if num_visitors > 0 else [],
+                "safety_incidents": [],
+                "notes": random.choice([
+                    "On schedule.", "Good progress.", "Ahead of schedule.",
+                    "Minor delays resolved.", "Inspection passed.", "Coordination meeting held.",
+                    "Punch list items addressed.", "Material delivery on time."
+                ])
+            }
+
+            if weather_delay:
+                log["notes"] = "Reduced crew due to weather. Interior work only."
+
+            logs.append(log)
+            log_id += 1
+
+        current_date += timedelta(days=1)
+
+    return logs
+
+# Generate the data
+SAMPLE_RFIS = generate_rfis(150)
+SAMPLE_SUBMITTALS = generate_submittals(150)
+SAMPLE_DAILY_LOGS = generate_daily_logs(200)
