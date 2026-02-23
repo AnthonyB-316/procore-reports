@@ -49,16 +49,19 @@ st.markdown("""
         color: #F47E20;
     }
 
-    /* Card-style metrics */
-    [data-testid="stMetric"] {
+    /* Card-style metrics - main area */
+    section[data-testid="stMain"] [data-testid="stMetric"] {
         background: #fff;
         border: 1px solid #e0e0e0;
         border-radius: 4px;
         padding: 16px;
         box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
-    [data-testid="stMetricValue"] {
-        color: #2D3E50;
+    section[data-testid="stMain"] [data-testid="stMetricValue"] {
+        color: #2D3E50 !important;
+    }
+    section[data-testid="stMain"] [data-testid="stMetricLabel"] {
+        color: #666 !important;
     }
 
     /* Table styling */
@@ -76,18 +79,30 @@ st.markdown("""
     [data-testid="stSidebar"] {
         background: #2D3E50;
     }
-    [data-testid="stSidebar"] * {
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
         color: #fff !important;
+    }
+    [data-testid="stSidebar"] [data-testid="stMetric"] {
+        background: #3d4f61;
+        border-radius: 4px;
+        padding: 10px;
     }
     [data-testid="stSidebar"] [data-testid="stMetricValue"] {
         color: #F47E20 !important;
     }
-    [data-testid="stSidebar"] [data-testid="stMetricLabel"] {
+    [data-testid="stSidebar"] [data-testid="stMetricLabel"] p {
         color: #ccc !important;
     }
     [data-testid="stSidebar"] .stSelectbox > div > div {
         background: #3d4f61;
-        color: #fff;
+    }
+    [data-testid="stSidebar"] .stSelectbox svg {
+        fill: #fff;
     }
     [data-testid="stSidebar"] hr {
         border-color: #4a5d6f;
