@@ -1,0 +1,10 @@
+# Config with real credentials
+config.py
+
+# Output files
+output/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
