@@ -118,6 +118,11 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Calculate stats for sidebar
+open_rfis = len([r for r in SAMPLE_RFIS if r["status"] == "open"])
+pending_subs = len([s for s in SAMPLE_SUBMITTALS if s["status"] == "pending"])
+latest_workers = sum(m["headcount"] for m in SAMPLE_DAILY_LOGS[-1].get("manpower", []))
+
 # Sidebar - project info
 with st.sidebar:
     st.markdown("### Project Tools")
@@ -131,8 +136,9 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("**Quick Stats**")
-    st.metric("Active RFIs", "5")
-    st.metric("Pending Submittals", "3")
+    st.metric("Open RFIs", open_rfis)
+    st.metric("Pending Submittals", pending_subs)
+    st.metric("Workers Today", latest_workers)
 
 # Main content based on sidebar selection
 today = datetime.now()
@@ -155,23 +161,30 @@ if tool == "RFIs":
             "#": rfi["number"],
             "Subject": rfi["subject"],
             "Status": rfi["status"].upper(),
+            "Priority": rfi.get("priority", ""),
             "Ball In Court": rfi.get("ball_in_court", {}).get("name", ""),
+            "Assignee": rfi.get("assignee", {}).get("name", ""),
+            "Location": rfi.get("location", ""),
+            "Created": created.strftime("%m/%d/%y"),
             "Due Date": due_date,
             "Days Open": days_open,
+            "Cost Impact": rfi.get("cost_impact", ""),
+            "Schedule": "Yes" if rfi.get("schedule_impact") == "Yes" else "",
             "Overdue": "OVERDUE" if is_overdue else ""
         })
 
     df = pd.DataFrame(rfi_data).sort_values("Days Open", ascending=False)
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric("Total", len(df))
     col2.metric("Open", len(df[df["Status"] == "OPEN"]))
     col3.metric("Closed", len(df[df["Status"] == "CLOSED"]))
     col4.metric("Overdue", len(df[df["Overdue"] == "OVERDUE"]))
+    col5.metric("High Priority", len(df[df["Priority"] == "High"]))
 
     st.markdown("####")
 
-    # Style the dataframe - subtle overdue indicator
+    # Style the dataframe
     def style_overdue(val):
         if val == "OVERDUE":
             return "color: #C62828; font-weight: 600"
@@ -182,10 +195,17 @@ if tool == "RFIs":
             return "color: #E65100"
         elif val == "CLOSED":
             return "color: #2E7D32"
+        elif val == "DRAFT":
+            return "color: #757575"
         return ""
 
-    styled_df = df.style.applymap(style_overdue, subset=["Overdue"]).applymap(style_status, subset=["Status"])
-    st.dataframe(styled_df, use_container_width=True, hide_index=True, height=400)
+    def style_priority(val):
+        if val == "High":
+            return "color: #C62828; font-weight: 600"
+        return ""
+
+    styled_df = df.style.applymap(style_overdue, subset=["Overdue"]).applymap(style_status, subset=["Status"]).applymap(style_priority, subset=["Priority"])
+    st.dataframe(styled_df, use_container_width=True, hide_index=True, height=450)
 
 elif tool == "Submittals":
     st.markdown("## Submittals")
@@ -194,61 +214,82 @@ elif tool == "Submittals":
     for sub in SAMPLE_SUBMITTALS:
         sub_data.append({
             "#": sub["number"],
+            "Rev": sub.get("revision", "0"),
             "Title": sub["title"],
             "Spec Section": sub.get("spec_section", ""),
+            "Type": sub.get("type", ""),
             "Status": sub["status"].upper().replace("_", " "),
+            "Responsible": sub.get("responsible_contractor", ""),
             "Submitted By": sub.get("submitted_by", {}).get("name", ""),
-            "Due Date": sub.get("due_date", "")
+            "Approver": sub.get("approver", {}).get("name", ""),
+            "Submitted": sub.get("submitted_date", ""),
+            "Due Date": sub.get("due_date", ""),
+            "Approved": sub.get("approved_date", ""),
+            "Lead Time": sub.get("lead_time", "")
         })
 
     df = pd.DataFrame(sub_data)
 
     # Status counts
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Approved", len(df[df["Status"] == "APPROVED"]))
-    col2.metric("Pending", len(df[df["Status"] == "PENDING"]))
-    col3.metric("Revise & Resubmit", len(df[df["Status"] == "REVISE RESUBMIT"]))
-    col4.metric("Rejected", len(df[df["Status"] == "REJECTED"]))
+    col1, col2, col3, col4, col5 = st.columns(5)
+    col1.metric("Total", len(df))
+    col2.metric("Approved", len(df[df["Status"] == "APPROVED"]) + len(df[df["Status"] == "APPROVED AS NOTED"]))
+    col3.metric("Pending", len(df[df["Status"] == "PENDING"]))
+    col4.metric("Revise", len(df[df["Status"] == "REVISE RESUBMIT"]))
+    col5.metric("Rejected", len(df[df["Status"] == "REJECTED"]))
 
     st.markdown("####")
 
     def color_status(val):
         colors = {
-            "APPROVED": "background-color: #E8F5E9; color: #2E7D32",
-            "PENDING": "background-color: #FFF3E0; color: #E65100",
-            "REVISE RESUBMIT": "background-color: #FFF8E1; color: #F57F17",
-            "APPROVED AS NOTED": "background-color: #E3F2FD; color: #1565C0",
-            "REJECTED": "background-color: #FFEBEE; color: #C62828"
+            "APPROVED": "color: #2E7D32; font-weight: 600",
+            "PENDING": "color: #E65100",
+            "REVISE RESUBMIT": "color: #F57F17; font-weight: 600",
+            "APPROVED AS NOTED": "color: #1565C0",
+            "REJECTED": "color: #C62828; font-weight: 600"
         }
         return colors.get(val, "")
 
     styled_df = df.style.applymap(color_status, subset=["Status"])
-    st.dataframe(styled_df, use_container_width=True, hide_index=True, height=400)
+    st.dataframe(styled_df, use_container_width=True, hide_index=True, height=450)
 
 else:  # Daily Log
     st.markdown("## Daily Log")
 
     mp_data = []
     total_workers = 0
+    all_deliveries = 0
 
     for log in SAMPLE_DAILY_LOGS:
         day_total = sum(m["headcount"] for m in log.get("manpower", []))
         total_workers += day_total
+        all_deliveries += len(log.get("deliveries", []))
+
+        trades = ", ".join([f"{m['trade']} ({m['headcount']})" for m in log.get("manpower", [])])
+        deliveries = ", ".join(log.get("deliveries", [])) if log.get("deliveries") else ""
+        visitors = ", ".join(log.get("visitors", [])) if log.get("visitors") else ""
 
         mp_data.append({
             "Date": log["log_date"],
+            "Day": log.get("day", ""),
+            "Hours": log.get("work_hours", ""),
             "Weather": log.get("weather", ""),
             "Delay": "Yes" if log.get("weather_delay") else "",
             "Workers": day_total,
+            "Trades": trades,
+            "Work Performed": log.get("work_performed", ""),
+            "Deliveries": deliveries,
+            "Visitors": visitors,
             "Notes": log.get("notes", "")
         })
 
     df = pd.DataFrame(mp_data)
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     col1.metric("Days Logged", len(df))
     col2.metric("Total Workers", total_workers)
-    col3.metric("Weather Delays", len(df[df["Delay"] == "Yes"]))
+    col3.metric("Deliveries", all_deliveries)
+    col4.metric("Weather Delays", len(df[df["Delay"] == "Yes"]))
 
     st.markdown("####")
 
@@ -259,16 +300,23 @@ else:  # Daily Log
         return ""
 
     styled_df = df.style.applymap(style_delay, subset=["Delay"])
-    st.dataframe(styled_df, use_container_width=True, hide_index=True, height=400)
+    st.dataframe(styled_df, use_container_width=True, hide_index=True, height=350)
 
     # Trade breakdown for latest day
-    st.markdown("#### Manpower by Trade (Latest)")
-    latest = SAMPLE_DAILY_LOGS[-1]
-    trade_df = pd.DataFrame(latest["manpower"])
-    trade_df.columns = ["Trade", "Headcount"]
+    st.markdown("---")
+    col1, col2 = st.columns(2)
 
-    col1, col2 = st.columns([1, 2])
     with col1:
+        st.markdown("#### Manpower by Trade (Latest)")
+        latest = SAMPLE_DAILY_LOGS[-1]
+        trade_df = pd.DataFrame(latest["manpower"])
+        trade_df.columns = ["Trade", "Headcount", "Company"]
         st.dataframe(trade_df, use_container_width=True, hide_index=True)
+
     with col2:
-        st.bar_chart(trade_df.set_index("Trade"))
+        st.markdown("#### Headcount Trend")
+        trend_data = pd.DataFrame({
+            "Date": [log["log_date"] for log in SAMPLE_DAILY_LOGS],
+            "Workers": [sum(m["headcount"] for m in log.get("manpower", [])) for log in SAMPLE_DAILY_LOGS]
+        })
+        st.line_chart(trend_data.set_index("Date"))
