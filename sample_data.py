@@ -15,8 +15,8 @@ SAMPLE_RFIS = [
         "location": "Level 12 - Core",
         "ball_in_court": {"name": "HKS Architects"},
         "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2026-01-10T10:00:00Z",
-        "due_date": "2026-01-17",
+        "created_at": "2025-01-10T10:00:00Z",
+        "due_date": "2025-01-17",
         "assignee": {"name": "Mike Chen"}
     },
     {
@@ -30,8 +30,8 @@ SAMPLE_RFIS = [
         "location": "Level 14 - Suite 1420",
         "ball_in_court": {"name": "Owner's Rep"},
         "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2026-01-08T14:30:00Z",
-        "due_date": "2026-01-15",
+        "created_at": "2025-01-08T14:30:00Z",
+        "due_date": "2025-01-15",
         "assignee": {"name": "Sarah Johnson"}
     },
     {
@@ -45,9 +45,9 @@ SAMPLE_RFIS = [
         "location": "Level 12 - Elevator Lobby",
         "ball_in_court": {"name": "GC"},
         "created_by": {"name": "Mike Chen"},
-        "created_at": "2026-01-05T09:00:00Z",
-        "due_date": "2026-01-12",
-        "closed_at": "2026-01-11T16:00:00Z",
+        "created_at": "2025-01-05T09:00:00Z",
+        "due_date": "2025-01-12",
+        "closed_at": "2025-01-11T16:00:00Z",
         "assignee": {"name": "Anthony Buonantuono"}
     },
     {
@@ -61,8 +61,8 @@ SAMPLE_RFIS = [
         "location": "Level 14 - Reception",
         "ball_in_court": {"name": "Interior Designer"},
         "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2026-01-15T11:00:00Z",
-        "due_date": "2026-01-22",
+        "created_at": "2025-01-15T11:00:00Z",
+        "due_date": "2025-01-22",
         "assignee": {"name": "Mike Chen"}
     },
     {
@@ -76,8 +76,8 @@ SAMPLE_RFIS = [
         "location": "Level 11 - Corridor B",
         "ball_in_court": {"name": "HKS Architects"},
         "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2026-01-03T08:00:00Z",
-        "due_date": "2026-01-10",
+        "created_at": "2025-01-03T08:00:00Z",
+        "due_date": "2025-01-10",
         "assignee": {"name": "Sarah Johnson"}
     },
     {
@@ -91,8 +91,8 @@ SAMPLE_RFIS = [
         "location": "Level 11 - Open Office",
         "ball_in_court": {"name": "GC"},
         "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2026-01-20T10:00:00Z",
-        "due_date": "2026-01-27",
+        "created_at": "2025-01-20T10:00:00Z",
+        "due_date": "2025-01-27",
         "assignee": {"name": "Anthony Buonantuono"}
     },
     {
@@ -106,9 +106,9 @@ SAMPLE_RFIS = [
         "location": "Level 12 - Perimeter",
         "ball_in_court": {"name": "GC"},
         "created_by": {"name": "Mike Chen"},
-        "created_at": "2026-01-02T09:00:00Z",
-        "due_date": "2026-01-09",
-        "closed_at": "2026-01-08T14:00:00Z",
+        "created_at": "2025-01-02T09:00:00Z",
+        "due_date": "2025-01-09",
+        "closed_at": "2025-01-08T14:00:00Z",
         "assignee": {"name": "Mike Chen"}
     },
     {
@@ -122,8 +122,8 @@ SAMPLE_RFIS = [
         "location": "Level 14 - Electrical Room",
         "ball_in_court": {"name": "MEP Engineer"},
         "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2026-01-18T13:00:00Z",
-        "due_date": "2026-01-25",
+        "created_at": "2025-01-18T13:00:00Z",
+        "due_date": "2025-01-25",
         "assignee": {"name": "Sarah Johnson"}
     },
     {
@@ -137,8 +137,8 @@ SAMPLE_RFIS = [
         "location": "Level 14 - Conference A",
         "ball_in_court": {"name": "Fire Protection"},
         "created_by": {"name": "Mike Chen"},
-        "created_at": "2026-01-19T09:00:00Z",
-        "due_date": "2026-01-26",
+        "created_at": "2025-01-19T09:00:00Z",
+        "due_date": "2025-01-26",
         "assignee": {"name": "Mike Chen"}
     },
     {
@@ -152,8 +152,8 @@ SAMPLE_RFIS = [
         "location": "Level 12 - Restrooms",
         "ball_in_court": {"name": "HKS Architects"},
         "created_by": {"name": "Anthony Buonantuono"},
-        "created_at": "2026-01-21T11:00:00Z",
-        "due_date": "2026-01-28",
+        "created_at": "2025-01-21T11:00:00Z",
+        "due_date": "2025-01-28",
         "assignee": {"name": "Anthony Buonantuono"}
     },
     {
@@ -167,9 +167,9 @@ SAMPLE_RFIS = [
         "location": "Level 11 - Open Office",
         "ball_in_court": {"name": "GC"},
         "created_by": {"name": "Sarah Johnson"},
-        "created_at": "2025-12-28T14:00:00Z",
-        "due_date": "2026-01-04",
-        "closed_at": "2026-01-03T10:00:00Z",
+        "created_at": "2024-12-28T14:00:00Z",
+        "due_date": "2025-01-04",
+        "closed_at": "2025-01-03T10:00:00Z",
         "assignee": {"name": "Sarah Johnson"}
     },
     {
@@ -183,9 +183,9 @@ SAMPLE_RFIS = [
         "location": "Stair A - All Levels",
         "ball_in_court": {"name": "GC"},
         "created_by": {"name": "Mike Chen"},
-        "created_at": "2025-12-20T08:00:00Z",
-        "due_date": "2025-12-27",
-        "closed_at": "2025-12-24T16:00:00Z",
+        "created_at": "2024-12-20T08:00:00Z",
+        "due_date": "2024-12-27",
+        "closed_at": "2024-12-24T16:00:00Z",
         "assignee": {"name": "Mike Chen"}
     }
 ]
@@ -202,9 +202,9 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "ABC Hardware Co"},
         "responsible_contractor": "R&J Construction",
         "approver": {"name": "HKS Architects"},
-        "due_date": "2026-01-15",
-        "submitted_date": "2026-01-10",
-        "approved_date": "2026-01-14",
+        "due_date": "2025-01-15",
+        "submitted_date": "2025-01-10",
+        "approved_date": "2025-01-14",
         "lead_time": "4 weeks"
     },
     {
@@ -218,8 +218,8 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Ceiling Systems Inc"},
         "responsible_contractor": "Acoustical Ceilings LLC",
         "approver": {"name": "HKS Architects"},
-        "due_date": "2026-01-20",
-        "submitted_date": "2026-01-12",
+        "due_date": "2025-01-20",
+        "submitted_date": "2025-01-12",
         "approved_date": "",
         "lead_time": "3 weeks"
     },
@@ -234,8 +234,8 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Fine Woodworks LLC"},
         "responsible_contractor": "Fine Woodworks LLC",
         "approver": {"name": "Interior Designer"},
-        "due_date": "2026-01-18",
-        "submitted_date": "2026-01-08",
+        "due_date": "2025-01-18",
+        "submitted_date": "2025-01-08",
         "approved_date": "",
         "lead_time": "6 weeks"
     },
@@ -250,9 +250,9 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Pro Painters Inc"},
         "responsible_contractor": "Pro Painters Inc",
         "approver": {"name": "Interior Designer"},
-        "due_date": "2026-01-10",
-        "submitted_date": "2026-01-05",
-        "approved_date": "2026-01-09",
+        "due_date": "2025-01-10",
+        "submitted_date": "2025-01-05",
+        "approved_date": "2025-01-09",
         "lead_time": "1 week"
     },
     {
@@ -266,8 +266,8 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Flooring Solutions"},
         "responsible_contractor": "Flooring Solutions",
         "approver": {"name": "Interior Designer"},
-        "due_date": "2026-01-22",
-        "submitted_date": "2026-01-14",
+        "due_date": "2025-01-22",
+        "submitted_date": "2025-01-14",
         "approved_date": "",
         "lead_time": "2 weeks"
     },
@@ -282,9 +282,9 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Electric Supply Co"},
         "responsible_contractor": "Ace Electric",
         "approver": {"name": "MEP Engineer"},
-        "due_date": "2026-01-12",
-        "submitted_date": "2026-01-06",
-        "approved_date": "2026-01-11",
+        "due_date": "2025-01-12",
+        "submitted_date": "2025-01-06",
+        "approved_date": "2025-01-11",
         "lead_time": "8 weeks"
     },
     {
@@ -298,8 +298,8 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "HVAC Distributors"},
         "responsible_contractor": "Metro HVAC",
         "approver": {"name": "MEP Engineer"},
-        "due_date": "2026-01-25",
-        "submitted_date": "2026-01-18",
+        "due_date": "2025-01-25",
+        "submitted_date": "2025-01-18",
         "approved_date": "",
         "lead_time": "10 weeks"
     },
@@ -314,8 +314,8 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Safety Equipment Inc"},
         "responsible_contractor": "R&J Construction",
         "approver": {"name": "HKS Architects"},
-        "due_date": "2026-01-08",
-        "submitted_date": "2026-01-03",
+        "due_date": "2025-01-08",
+        "submitted_date": "2025-01-03",
         "approved_date": "",
         "lead_time": "2 weeks"
     },
@@ -330,9 +330,9 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Electric Supply Co"},
         "responsible_contractor": "Ace Electric",
         "approver": {"name": "HKS Architects"},
-        "due_date": "2026-01-08",
-        "submitted_date": "2026-01-02",
-        "approved_date": "2026-01-07",
+        "due_date": "2025-01-08",
+        "submitted_date": "2025-01-02",
+        "approved_date": "2025-01-07",
         "lead_time": "3 weeks"
     },
     {
@@ -346,9 +346,9 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Drywall Pros"},
         "responsible_contractor": "Drywall Pros",
         "approver": {"name": "HKS Architects"},
-        "due_date": "2026-01-05",
-        "submitted_date": "2025-12-28",
-        "approved_date": "2026-01-04",
+        "due_date": "2025-01-05",
+        "submitted_date": "2024-12-28",
+        "approved_date": "2025-01-04",
         "lead_time": "1 week"
     },
     {
@@ -362,8 +362,8 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Glass Solutions NYC"},
         "responsible_contractor": "Glass Solutions NYC",
         "approver": {"name": "HKS Architects"},
-        "due_date": "2026-01-28",
-        "submitted_date": "2026-01-20",
+        "due_date": "2025-01-28",
+        "submitted_date": "2025-01-20",
         "approved_date": "",
         "lead_time": "12 weeks"
     },
@@ -378,9 +378,9 @@ SAMPLE_SUBMITTALS = [
         "submitted_by": {"name": "Metro Plumbing Supply"},
         "responsible_contractor": "AAA Plumbing",
         "approver": {"name": "MEP Engineer"},
-        "due_date": "2026-01-10",
-        "submitted_date": "2026-01-04",
-        "approved_date": "2026-01-09",
+        "due_date": "2025-01-10",
+        "submitted_date": "2025-01-04",
+        "approved_date": "2025-01-09",
         "lead_time": "6 weeks"
     }
 ]
@@ -388,7 +388,7 @@ SAMPLE_SUBMITTALS = [
 SAMPLE_DAILY_LOGS = [
     {
         "id": 1,
-        "log_date": "2026-01-20",
+        "log_date": "2025-01-20",
         "day": "Monday",
         "weather": "Clear, 35°F",
         "weather_delay": False,
@@ -407,7 +407,7 @@ SAMPLE_DAILY_LOGS = [
     },
     {
         "id": 2,
-        "log_date": "2026-01-21",
+        "log_date": "2025-01-21",
         "day": "Tuesday",
         "weather": "Snow, 28°F",
         "weather_delay": True,
@@ -426,7 +426,7 @@ SAMPLE_DAILY_LOGS = [
     },
     {
         "id": 3,
-        "log_date": "2026-01-22",
+        "log_date": "2025-01-22",
         "day": "Wednesday",
         "weather": "Cloudy, 32°F",
         "weather_delay": False,
@@ -446,7 +446,7 @@ SAMPLE_DAILY_LOGS = [
     },
     {
         "id": 4,
-        "log_date": "2026-01-23",
+        "log_date": "2025-01-23",
         "day": "Thursday",
         "weather": "Clear, 38°F",
         "weather_delay": False,
@@ -466,7 +466,7 @@ SAMPLE_DAILY_LOGS = [
     },
     {
         "id": 5,
-        "log_date": "2026-01-24",
+        "log_date": "2025-01-24",
         "day": "Friday",
         "weather": "Clear, 42°F",
         "weather_delay": False,
@@ -486,7 +486,7 @@ SAMPLE_DAILY_LOGS = [
     },
     {
         "id": 6,
-        "log_date": "2026-01-27",
+        "log_date": "2025-01-27",
         "day": "Monday",
         "weather": "Partly Cloudy, 40°F",
         "weather_delay": False,
@@ -507,7 +507,7 @@ SAMPLE_DAILY_LOGS = [
     },
     {
         "id": 7,
-        "log_date": "2026-01-28",
+        "log_date": "2025-01-28",
         "day": "Tuesday",
         "weather": "Rain, 45°F",
         "weather_delay": False,
