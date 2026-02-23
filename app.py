@@ -136,9 +136,9 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("**Quick Stats**")
-    st.metric("Open RFIs", open_rfis)
-    st.metric("Pending Submittals", pending_subs)
-    st.metric("Workers Today", latest_workers)
+    st.metric("Open RFIs", open_rfis, help="Requests for Information awaiting response")
+    st.metric("Pending Submittals", pending_subs, help="Shop drawings/samples awaiting approval")
+    st.metric("Workers Today", latest_workers, help="Total trade workers on site today")
 
 # Main content based on sidebar selection
 today = datetime.now()
@@ -176,11 +176,11 @@ if tool == "RFIs":
     df = pd.DataFrame(rfi_data).sort_values("Days Open", ascending=False)
 
     col1, col2, col3, col4, col5 = st.columns(5)
-    col1.metric("Total", len(df))
-    col2.metric("Open", len(df[df["Status"] == "OPEN"]))
-    col3.metric("Closed", len(df[df["Status"] == "CLOSED"]))
-    col4.metric("Overdue", len(df[df["Overdue"] == "OVERDUE"]))
-    col5.metric("High Priority", len(df[df["Priority"] == "High"]))
+    col1.metric("Total", len(df), help="Total RFIs submitted on project")
+    col2.metric("Open", len(df[df["Status"] == "OPEN"]), help="RFIs awaiting response from architect/engineer")
+    col3.metric("Closed", len(df[df["Status"] == "CLOSED"]), help="RFIs with official responses")
+    col4.metric("Overdue", len(df[df["Overdue"] == "OVERDUE"]), help="RFIs past their required response date")
+    col5.metric("High Priority", len(df[df["Priority"] == "High"]), help="RFIs blocking critical path work")
 
     st.markdown("####")
 
@@ -232,11 +232,11 @@ elif tool == "Submittals":
 
     # Status counts
     col1, col2, col3, col4, col5 = st.columns(5)
-    col1.metric("Total", len(df))
-    col2.metric("Approved", len(df[df["Status"] == "APPROVED"]) + len(df[df["Status"] == "APPROVED AS NOTED"]))
-    col3.metric("Pending", len(df[df["Status"] == "PENDING"]))
-    col4.metric("Revise", len(df[df["Status"] == "REVISE RESUBMIT"]))
-    col5.metric("Rejected", len(df[df["Status"] == "REJECTED"]))
+    col1.metric("Total", len(df), help="Total submittals on project")
+    col2.metric("Approved", len(df[df["Status"] == "APPROVED"]) + len(df[df["Status"] == "APPROVED AS NOTED"]), help="Cleared for fabrication/installation")
+    col3.metric("Pending", len(df[df["Status"] == "PENDING"]), help="Awaiting architect/engineer review")
+    col4.metric("Revise", len(df[df["Status"] == "REVISE RESUBMIT"]), help="Rejected - contractor must resubmit")
+    col5.metric("Rejected", len(df[df["Status"] == "REJECTED"]), help="Does not comply with specs")
 
     st.markdown("####")
 
@@ -288,10 +288,10 @@ else:  # Daily Log
     avg_workers = sum(daily_counts) // len(daily_counts) if daily_counts else 0
 
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Days Logged", len(df))
-    col2.metric("Avg Daily Workers", avg_workers)
-    col3.metric("Deliveries", all_deliveries)
-    col4.metric("Weather Delays", len(df[df["Delay"] == "Yes"]))
+    col1.metric("Days Logged", len(df), help="Total days with recorded daily logs")
+    col2.metric("Avg Daily Workers", avg_workers, help="Average trade workers on site per day")
+    col3.metric("Deliveries", all_deliveries, help="Total material deliveries recorded")
+    col4.metric("Weather Delays", len(df[df["Delay"] == "Yes"]), help="Days with weather-related work stoppages")
 
     st.markdown("####")
 
@@ -322,3 +322,7 @@ else:  # Daily Log
             "Workers": [sum(m["headcount"] for m in log.get("manpower", [])) for log in SAMPLE_DAILY_LOGS]
         })
         st.line_chart(trend_data.set_index("Date"))
+
+# Footer
+st.markdown("---")
+st.caption("Procore Reports Dashboard | Built with Streamlit + Pandas | [GitHub](https://github.com/AnthonyB-316/procore-reports)")
