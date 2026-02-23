@@ -257,12 +257,12 @@ else:  # Daily Log
     st.markdown("## Daily Log")
 
     mp_data = []
-    total_workers = 0
+    daily_counts = []
     all_deliveries = 0
 
     for log in SAMPLE_DAILY_LOGS:
         day_total = sum(m["headcount"] for m in log.get("manpower", []))
-        total_workers += day_total
+        daily_counts.append(day_total)
         all_deliveries += len(log.get("deliveries", []))
 
         trades = ", ".join([f"{m['trade']} ({m['headcount']})" for m in log.get("manpower", [])])
@@ -285,9 +285,11 @@ else:  # Daily Log
 
     df = pd.DataFrame(mp_data)
 
+    avg_workers = sum(daily_counts) // len(daily_counts) if daily_counts else 0
+
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Days Logged", len(df))
-    col2.metric("Total Workers", total_workers)
+    col2.metric("Avg Daily Workers", avg_workers)
     col3.metric("Deliveries", all_deliveries)
     col4.metric("Weather Delays", len(df[df["Delay"] == "Yes"]))
 
