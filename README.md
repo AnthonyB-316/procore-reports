@@ -1,35 +1,32 @@
 # Procore Reports
 
-CLI tool to generate project reports from Procore data.
+Pulls RFIs, submittals, and daily logs from Procore and generates CSV reports. Built this to automate the weekly status reports I was doing manually on site.
 
-## Reports Generated
+## What it does
 
-1. **RFI Aging Report** - Tracks days open, flags overdue items
-2. **Submittal Status Report** - Status breakdown by submittal
-3. **Weekly Manpower Report** - Daily headcount and weather delays
+- **RFI Aging** - Shows how long each RFI has been open, flags overdue ones
+- **Submittal Status** - Breakdown by status (approved, pending, rejected, etc.)
+- **Manpower Summary** - Daily headcount from daily logs, weather delays
 
-## Quick Start
+## Usage
 
 ```bash
-# Install dependencies
 pip install -r requirements.txt
 
-# Run in demo mode (no API credentials needed)
+# demo mode (sample data, no API needed)
 python main.py --demo
 
-# Run specific report
+# specific report only
 python main.py --demo --report rfi
 ```
 
-## API Setup
+## Connecting to Procore
 
-1. Copy `config.example.py` to `config.py`
-2. Add your Procore API credentials
-3. Run without `--demo` flag
+Copy `config.example.py` to `config.py` and add your API credentials from the Procore developer portal. Then run without the `--demo` flag.
 
 ## Output
 
-Reports saved to `/output/` as CSV files:
+CSVs go to `/output/`:
 - `rfi_aging_report.csv`
 - `submittal_status.csv`
 - `weekly_manpower.csv`
