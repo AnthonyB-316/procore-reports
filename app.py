@@ -171,13 +171,20 @@ if tool == "RFIs":
 
     st.markdown("####")
 
-    # Style the dataframe
-    def highlight_overdue(row):
-        if row["Overdue"] == "OVERDUE":
-            return ["background-color: #FFEBEE"] * len(row)
-        return [""] * len(row)
+    # Style the dataframe - subtle overdue indicator
+    def style_overdue(val):
+        if val == "OVERDUE":
+            return "color: #C62828; font-weight: 600"
+        return ""
 
-    styled_df = df.style.apply(highlight_overdue, axis=1)
+    def style_status(val):
+        if val == "OPEN":
+            return "color: #E65100"
+        elif val == "CLOSED":
+            return "color: #2E7D32"
+        return ""
+
+    styled_df = df.style.applymap(style_overdue, subset=["Overdue"]).applymap(style_status, subset=["Status"])
     st.dataframe(styled_df, use_container_width=True, hide_index=True, height=400)
 
 elif tool == "Submittals":
@@ -245,13 +252,13 @@ else:  # Daily Log
 
     st.markdown("####")
 
-    # Highlight delays
-    def highlight_delay(row):
-        if row["Delay"] == "Yes":
-            return ["background-color: #FFF3E0"] * len(row)
-        return [""] * len(row)
+    # Style delays
+    def style_delay(val):
+        if val == "Yes":
+            return "color: #E65100; font-weight: 600"
+        return ""
 
-    styled_df = df.style.apply(highlight_delay, axis=1)
+    styled_df = df.style.applymap(style_delay, subset=["Delay"])
     st.dataframe(styled_df, use_container_width=True, hide_index=True, height=400)
 
     # Trade breakdown for latest day
