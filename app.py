@@ -76,11 +76,21 @@ st.markdown("""
     [data-testid="stSidebar"] {
         background: #2D3E50;
     }
-    [data-testid="stSidebar"] .stMarkdown {
+    [data-testid="stSidebar"] * {
+        color: #fff !important;
+    }
+    [data-testid="stSidebar"] [data-testid="stMetricValue"] {
+        color: #F47E20 !important;
+    }
+    [data-testid="stSidebar"] [data-testid="stMetricLabel"] {
+        color: #ccc !important;
+    }
+    [data-testid="stSidebar"] .stSelectbox > div > div {
+        background: #3d4f61;
         color: #fff;
     }
-    [data-testid="stSidebar"] .stSelectbox label {
-        color: #fff;
+    [data-testid="stSidebar"] hr {
+        border-color: #4a5d6f;
     }
 </style>
 """, unsafe_allow_html=True)
