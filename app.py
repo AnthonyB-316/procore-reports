@@ -204,7 +204,7 @@ if tool == "RFIs":
             return "color: #C62828; font-weight: 600"
         return ""
 
-    styled_df = df.style.applymap(style_overdue, subset=["Overdue"]).applymap(style_status, subset=["Status"]).applymap(style_priority, subset=["Priority"])
+    styled_df = df.style.map(style_overdue, subset=["Overdue"]).applymap(style_status, subset=["Status"]).applymap(style_priority, subset=["Priority"])
     st.dataframe(styled_df, use_container_width=True, hide_index=True, height=450)
 
 elif tool == "Submittals":
@@ -250,7 +250,7 @@ elif tool == "Submittals":
         }
         return colors.get(val, "")
 
-    styled_df = df.style.applymap(color_status, subset=["Status"])
+    styled_df = df.style.map(color_status, subset=["Status"])
     st.dataframe(styled_df, use_container_width=True, hide_index=True, height=450)
 
 else:  # Daily Log
@@ -301,7 +301,7 @@ else:  # Daily Log
             return "color: #E65100; font-weight: 600"
         return ""
 
-    styled_df = df.style.applymap(style_delay, subset=["Delay"])
+    styled_df = df.style.map(style_delay, subset=["Delay"])
     st.dataframe(styled_df, use_container_width=True, hide_index=True, height=350)
 
     # Trade breakdown for latest day
