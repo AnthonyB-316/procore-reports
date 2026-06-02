@@ -204,7 +204,7 @@ if tool == "RFIs":
             return "color: #C62828; font-weight: 600"
         return ""
 
-    styled_df = df.style.map(style_overdue, subset=["Overdue"]).applymap(style_status, subset=["Status"]).applymap(style_priority, subset=["Priority"])
+    styled_df = df.style.map(style_overdue, subset=["Overdue"]).map(style_status, subset=["Status"]).map(style_priority, subset=["Priority"])
     st.dataframe(styled_df, use_container_width=True, hide_index=True, height=450)
 
 elif tool == "Submittals":
